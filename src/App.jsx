@@ -13,7 +13,7 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-zinc-100 p-6 flex flex-col items-center">
+<div className="min-h-screen w-full bg-[#0a0a0a] text-zinc-100 p-6 flex flex-col items-center overflow-x-hidden">
       
       {/* --- ΧΟΡΟΠΗΔΗΧΤΟ MARTINI (Το κρατάμε διακριτικό στην άκρη) --- */}
       <motion.div 
@@ -33,8 +33,8 @@ export default function App() {
             exit={{ opacity: 0 }}
             className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-xs"
           >
-            <h1 className="text-4xl font-black mb-2 tracking-tighter italic text-amber-500 uppercase">
-              JOANNA'S HOME
+            <h1 className="text-4xl font-black mb-2 tracking-tighter italic text-[#f59e0b] uppercase shadow-sm">
+            JOANNA'S HOME
             </h1>
             <p className="text-zinc-500 mb-12 text-xs tracking-widest uppercase font-light">
               Premium Collection
