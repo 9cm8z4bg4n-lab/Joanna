@@ -13,7 +13,10 @@ export default function App() {
   ];
 
   return (
-<div className="min-h-screen w-full bg-[#0a0a0a] text-zinc-100 p-6 flex flex-col items-center overflow-x-hidden">
+<div 
+  style={{ backgroundColor: '#0a0a0a' }} 
+  className="min-h-screen w-full text-zinc-100 p-6 flex flex-col items-center overflow-x-hidden"
+>
       
       {/* --- ΧΟΡΟΠΗΔΗΧΤΟ MARTINI (Το κρατάμε διακριτικό στην άκρη) --- */}
       <motion.div 
@@ -37,7 +40,7 @@ export default function App() {
   style={{ color: '#f59e0b', fill: '#f59e0b' }} 
   className="text-4xl font-black mb-2 tracking-tighter italic uppercase block"
 >
-  My Decor
+  Joanna's Home
 </h1>
             <p className="text-zinc-500 mb-12 text-xs tracking-widest uppercase font-light">
               Premium Collection
@@ -73,7 +76,12 @@ export default function App() {
             className="w-full max-w-md"
           >
             <button onClick={() => setPage('home')} className="text-amber-500 mb-8 font-bold">← ΠΙΣΩ</button>
-            <h2 className="text-3xl font-black mb-8 border-b border-zinc-800 pb-2 italic">THE BAR</h2>
+            <h2 
+  style={{ color: '#f59e0b' }} 
+  className="text-3xl font-black mb-8 border-b border-zinc-800 pb-2 italic uppercase"
+>
+  THE BAR
+</h2>
             <div className="space-y-6">
               {drinks.map((d, i) => (
                 <div key={i} className="flex justify-between items-center border-b border-zinc-900 pb-4">
@@ -97,7 +105,12 @@ export default function App() {
             className="w-full max-w-md"
           >
             <button onClick={() => setPage('home')} className="text-amber-500 mb-8 font-bold">← ΠΙΣΩ</button>
-            <h2 className="text-3xl font-black mb-8 text-center italic">GALLERY</h2>
+<h2 
+  style={{ color: '#f59e0b' }} 
+  className="text-3xl font-black mb-8 text-center italic uppercase"
+>
+  GALLERY
+</h2>
             <div className="grid gap-6">
               <div className="bg-zinc-900 h-64 rounded-3xl border border-zinc-800 flex items-center justify-center text-zinc-600 italic">
                 Your Photo 1
