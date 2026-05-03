@@ -3,6 +3,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
+:root {
+  color-scheme: dark; /* Λέει στο κινητό ότι το site είναι ΜΟΝΟ dark */
+}
+
+body {
+  margin: 0;
+  background-color: #0a0a0a !important;
+  color: white;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0a0a0a;
+}
 html, body, #root {
   margin: 0;
   padding: 0;

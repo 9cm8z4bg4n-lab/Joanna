@@ -33,9 +33,12 @@ export default function App() {
             exit={{ opacity: 0 }}
             className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-xs"
           >
-            <h1 className="text-4xl font-black mb-2 tracking-tighter italic text-[#f59e0b] uppercase shadow-sm">
-            JOANNA'S HOME
-            </h1>
+<h1 
+  style={{ color: '#f59e0b', fill: '#f59e0b' }} 
+  className="text-4xl font-black mb-2 tracking-tighter italic uppercase block"
+>
+  My Decor
+</h1>
             <p className="text-zinc-500 mb-12 text-xs tracking-widest uppercase font-light">
               Premium Collection
             </p>
