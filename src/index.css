@@ -1,20 +1,18 @@
 @import "tailwindcss";
 
-/* Αυτό θα εξαφανίσει κάθε λευκό ίχνος από τον browser */
 :root {
   background-color: #0a0a0a;
-  color-scheme: dark;
 }
 
-* {
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html, body, #root {
+  background-color: #0a0a0a !important;
   width: 100%;
   min-height: 100vh;
-  background-color: #0a0a0a !important;
-  overflow-x: hidden; /* Διορθώνει το οριζόντιο κούνημα */
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
 }
