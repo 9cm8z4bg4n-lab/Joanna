@@ -76,37 +76,37 @@ export default function App() {
           </motion.div>
         )}
 
-{page === 'gallery' && (
+        {page === 'gallery' && (
   <motion.div 
     key="gallery"
     initial={{ opacity: 0 }} 
     animate={{ opacity: 1 }}
-    className="w-full max-w-md p-8 flex flex-col items-center"
+    className="w-full max-w-md p-6 flex flex-col items-center"
   >
     <button 
       onClick={() => setPage('home')} 
-      className="text-amber-500 mb-8 font-bold self-start"
+      className="text-amber-500 mb-6 font-bold self-start text-sm"
     >
       ← ΠΙΣΩ
     </button>
 
-    <h2 style={{ color: '#f59e0b' }} className="text-3xl font-black mb-10 text-center italic uppercase tracking-widest">
+    <h2 style={{ color: '#f59e0b' }} className="text-2xl font-black mb-6 text-center italic uppercase tracking-widest">
       GALLERY
     </h2>
     
-    {/* Το grid με σωστά κενά (gap-8) */}
-    <div className="grid grid-cols-1 gap-10 w-full">
+    {/* Μικρότερα κενά (gap-4) */}
+    <div className="grid grid-cols-1 gap-4 w-full">
       {galleryImages.map((url, i) => (
         <motion.div 
           key={i}
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 15, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: i * 0.1 }}
+          transition={{ delay: i * 0.05 }}
           className="w-full"
         >
           <img 
             src={url} 
-            className="w-full h-80 object-cover rounded-[2.5rem] border border-zinc-800 shadow-2xl" 
+            className="w-full h-64 object-cover rounded-2xl border border-zinc-900 shadow-md" 
             alt={`Gallery ${i}`}
             onError={(e) => { e.target.src = "https://placehold.co/400x600/111/444?text=Photo+Not+Found"; }}
           />
@@ -114,8 +114,7 @@ export default function App() {
       ))}
     </div>
     
-    {/* Ένα κενό στο τέλος για να μην κολλάει η τελευταία φωτό κάτω */}
-    <div className="h-20"></div>
+    <div className="h-10"></div>
   </motion.div>
 )}
       </AnimatePresence>
