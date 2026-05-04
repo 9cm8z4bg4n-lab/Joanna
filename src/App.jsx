@@ -76,46 +76,48 @@ export default function App() {
           </motion.div>
         )}
 
-        {page === 'gallery' && (
-          <motion.div 
-            key="gallery"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-            className="w-full max-w-md p-8 flex flex-col"
-          >
-            <button onClick={() => setPage('home')} className="text-amber-500 mb-8 font-bold self-start">← ΠΙΣΩ</button>
-            <h2 style={{ color: '#f59e0b' }} className="text-3xl font-black mb-8 text-center italic uppercase">GALLERY</h2>
-
-            {galleryImages.map((url, i) => (
-  <motion.img 
-    key={i}
-    src={url} 
-    initial={{ opacity: 0 }}
+{page === 'gallery' && (
+  <motion.div 
+    key="gallery"
+    initial={{ opacity: 0 }} 
     animate={{ opacity: 1 }}
-    className="w-full h-64 object-cover rounded-3xl border border-zinc-800 shadow-lg"
-    alt={`Gallery item ${i}`}
-  />
-))}
-            
-            <div className="grid gap-6">
-              {galleryImages.map((url, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="relative group"
-                >
-                  <img 
-                    src={url} 
-                    alt={`Gallery ${i}`}
-                    className="w-full h-64 object-cover rounded-3xl border border-zinc-800 shadow-xl"
-                    onError={(e) => { e.target.src = "https://placehold.co/400x600/111/444?text=Photo+Not+Found"; }}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
+    className="w-full max-w-md p-8 flex flex-col items-center"
+  >
+    <button 
+      onClick={() => setPage('home')} 
+      className="text-amber-500 mb-8 font-bold self-start"
+    >
+      ← ΠΙΣΩ
+    </button>
+
+    <h2 style={{ color: '#f59e0b' }} className="text-3xl font-black mb-10 text-center italic uppercase tracking-widest">
+      GALLERY
+    </h2>
+    
+    {/* Το grid με σωστά κενά (gap-8) */}
+    <div className="grid grid-cols-1 gap-10 w-full">
+      {galleryImages.map((url, i) => (
+        <motion.div 
+          key={i}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: i * 0.1 }}
+          className="w-full"
+        >
+          <img 
+            src={url} 
+            className="w-full h-80 object-cover rounded-[2.5rem] border border-zinc-800 shadow-2xl" 
+            alt={`Gallery ${i}`}
+            onError={(e) => { e.target.src = "https://placehold.co/400x600/111/444?text=Photo+Not+Found"; }}
+          />
+        </motion.div>
+      ))}
+    </div>
+    
+    {/* Ένα κενό στο τέλος για να μην κολλάει η τελευταία φωτό κάτω */}
+    <div className="h-20"></div>
+  </motion.div>
+)}
       </AnimatePresence>
     </div>
   )
