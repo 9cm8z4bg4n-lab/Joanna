@@ -10,7 +10,12 @@ export default function App() {
     { name: "Margarita", price: "8€", emoji: "🍹" },
     { name: "Mojito", price: "8€", emoji: "🍃" },
     { name: "Old Fashioned", price: "10€", emoji: "🍊" }
+  ]
+  const galleryImages = [
+    "/image_0.jpeg", // Βάλε εδώ τα ονόματα των αρχείων που έχεις στο public
+    "/image_1.jpeg"
   ];
+  ;
 
   return (
     <div style={{ backgroundColor: '#0a0a0a' }} className="min-h-screen w-full flex flex-col items-center">
@@ -32,7 +37,7 @@ export default function App() {
             className="flex flex-col items-center justify-center min-h-screen w-full px-6 text-center"
           >
             <h1 style={{ color: '#f59e0b' }} className="text-4xl font-black mb-2 italic uppercase">
-              My Decor
+              Joanna's Home
             </h1>
             <p className="text-zinc-500 mb-12 text-xs tracking-widest uppercase font-light">
               Premium Collection
@@ -78,10 +83,36 @@ export default function App() {
             className="w-full max-w-md p-8 flex flex-col"
           >
             <button onClick={() => setPage('home')} className="text-amber-500 mb-8 font-bold self-start">← ΠΙΣΩ</button>
-            <h2 style={{ color: '#f59e0b' }} className="text-3xl font-black mb-8 text-center italic">GALLERY</h2>
+            <h2 style={{ color: '#f59e0b' }} className="text-3xl font-black mb-8 text-center italic uppercase">GALLERY</h2>
+
+            {galleryImages.map((url, i) => (
+  <motion.img 
+    key={i}
+    src={url} 
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    className="w-full h-64 object-cover rounded-3xl border border-zinc-800 shadow-lg"
+    alt={`Gallery item ${i}`}
+  />
+))}
+            
             <div className="grid gap-6">
-              <div className="bg-zinc-900 h-64 rounded-3xl border border-zinc-800 flex items-center justify-center text-zinc-600">Photo 1</div>
-              <div className="bg-zinc-900 h-64 rounded-3xl border border-zinc-800 flex items-center justify-center text-zinc-600">Photo 2</div>
+              {galleryImages.map((url, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="relative group"
+                >
+                  <img 
+                    src={url} 
+                    alt={`Gallery ${i}`}
+                    className="w-full h-64 object-cover rounded-3xl border border-zinc-800 shadow-xl"
+                    onError={(e) => { e.target.src = "https://placehold.co/400x600/111/444?text=Photo+Not+Found"; }}
+                  />
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         )}
