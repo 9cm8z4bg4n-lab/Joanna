@@ -5,8 +5,8 @@ export default function App() {
   const [page, setPage] = useState('home');
 
   const drinks = [
-    { name: "Negroni", price: "9€", emoji: "🥃" },
     { name: "Pornstar Martini", price: "10€", emoji: "🍸" },
+    { name: "Negroni", price: "9€", emoji: "🥃" },
     { name: "Margarita", price: "8€", emoji: "🍹" },
     { name: "Mojito", price: "8€", emoji: "🍃" },
     { name: "Old Fashioned", price: "10€", emoji: "🍊" }
