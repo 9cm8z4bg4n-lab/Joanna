@@ -18,41 +18,41 @@ export default function App() {
     }
   };
 
-  // ΟΡΓΑΝΩΣΗ ΜΕΝΟΥ
+  // ΟΡΓΑΝΩΣΗ ΜΕΝΟΥ (ΔΙΟΡΘΩΜΕΝΑ ΟΡΘΟΓΡΑΦΙΚΑ & ΤΟΝΟΙ)
   const menuCategories = {
     savory: {
       title: "🍕 ΑΛΜΥΡΑ",
       items: [
-        { name: "Pizza Carbonara", price: "8.50€", image: "/pizza.jpg", rating: 4, review: "Η πεστο ηταν καλυτερη επειδη την εφτιαξα εγω." }
+        { name: "Pizza Carbonara", price: "8.50€", image: "/pizza.jpg", rating: 4, review: "Η πέστο ήταν καλύτερη επειδή την έφτιαξα εγώ." }
       ]
     },
     sweets: {
       title: "🍰 ΓΛΥΚΑ",
       items: [
-        { name: "Cookie", price: "5.50€", image: "/vafli.jpg", rating: 4, review: "Η σεφ με εβαλε να το φαω με το ζορι και με μεθυσε την ιδια μερα." },
-        { name: "Pancakes Chocolate and Strawberry", price: "8.80€", image: "/pancakes.jpg", rating: 5, review: "Το καλυτερο πρωινο ξυπνημα. πανκεικς και την πιο ομορφη σεφ." },
-        { name: "Bookie", price: "6.50€", image: "/vafli.jpg", rating: 3, review: "Ο μονος λογος που ηθελε να παω ειναι για να τα φτιαξει. Τα ζηλευω βαζω 3 αστερια!!!" }
+        { name: "Cookie", price: "5.50€", image: "/vafli.jpg", rating: 4, review: "Η σεφ με έβαλε να το φάω με το ζόρι και με μέθυσε την ίδια μέρα." },
+        { name: "Pancakes Chocolate and Strawberry", price: "8.80€", image: "/pancakes.jpg", rating: 5, review: "Το καλύτερο πρωινό ξύπνημα. Πάνκεϊκς και την πιο όμορφη σεφ." },
+        { name: "Bookie", price: "6.50€", image: "/vafli.jpg", rating: 3, review: "Ο μόνος λόγος που ήθελε να πάω είναι για να τα φτιάξει. Τα ζηλεύω, βάζω 3 αστέρια!!!" }
       ]
     },
     drinks: {
       title: "🍸 ΠΟΤΑ & COCKTAILS",
       items: [
-        { name: "Ρακί Καρπούζι", price: "6.00€", image: "/pornstar.jpg", rating: 3, review: "Για να μην το εχει πιει η αλκοολικια δεν λεει." }
+        { name: "Ρακί Καρπούζι", price: "6.00€", image: "/pornstar.jpg", rating: 3, review: "Για να μην το έχει πιει η αλκοολικιά, δεν λέει." }
       ]
     },
     premium: {
       title: "💎 ULTRA VIP EXPERIENCE",
       items: [
         { 
-          name: "Ο ΜΑΙΚ Ο ΦΑΣΟΛΑΚΗΣ", 
-          price: "ΑΝΕΚΤΙΜΗΤΟ 💎", // Η νέα εξωφρενική τιμή
+          name: "👑 Ο ΜΑΙΚ Ο ΦΑΣΟΛΑΚΗΣ", 
+          price: "ΑΝΕΚΤΙΜΗΤΟ 💎", 
           image: "image5.png", 
           review: "Δεν εξαγοράζεται με χρήματα. Σερβίρεται μόνο σε ειδικές περιστάσεις για αυτούς που ξέρουν να εκτιμούν την πραγματική αξία.",
           isPremium: true 
         },
         { 
-          name: "Ο ΜΑΙΚ Ο ΦΑΣΟΛΑΚΗΣ", 
-          price: "ΑΝΕΚΤΙΜΗΤΟ 💎", // Η νέα εξωφρενική τιμή
+          name: "👑 Ο ΜΑΙΚ Ο ΦΑΣΟΛΑΚΗΣ", 
+          price: "ΑΝΕΚΤΙΜΗΤΟ 💎", 
           image: "image10.jpeg", 
           review: "Δεν εξαγοράζεται με χρήματα. Σερβίρεται μόνο σε ειδικές περιστάσεις για αυτούς που ξέρουν να εκτιμούν την πραγματική αξία.",
           isPremium: true 
@@ -61,16 +61,16 @@ export default function App() {
     }
   };
 
-  // ΟΙ ΦΩΤΟΓΡΑΦΙΕΣ ΣΑΣ ΓΙΑ ΤΗ GALLERY
+  // ΟΙ ΦΩΤΟΓΡΑΦΙΕΣ ΣΑΣ ΓΙΑ ΤΗ GALLERY (ΔΙΟΡΘΩΜΕΝΑ ΟΡΘΟΓΡΑΦΙΚΑ & ΤΟΝΟΙ)
   const galleryImages = [
     { url: "image12.jpg", caption: "Η πρώτη μου φωτογραφία σου" },
-    { url: "image3.png", caption: "με το σαιντ τσικ 1" },
-    { url: "image8.png", caption: "με το σαιντ τσικ 1 ΞΑΝΑ" },
-    { url: "image2.png", caption: "εσυ οταν γινεσαι μπαντι" },
-    { url: "image9.jpeg", caption: "Η ΑΓΑΠΗΜΕΝΗ ΜΟΥ...με το σαιντ τσικ 2" },
-    { url: "image4.jpeg", caption: "οταν σου εκλεψα το σαιντι τσικ C:" },
-    { url: "image6.png", caption: "Η 2η αγαπημενη μου" },
-    { url: "facetime.png", caption: "γκουφι φεισταιμ" }
+    { url: "image3.png", caption: "Με το σάιντ τσικ 1" },
+    { url: "image8.png", caption: "Με το σάιντ τσικ 1 ΞΑΝΑ" },
+    { url: "image2.png", caption: "Εσύ όταν γίνεσαι μπάvτι" },
+    { url: "image9.jpeg", caption: "Η ΑΓΑΠΗΜΕΝΗ ΜΟΥ... με το σάιντ τσικ 2" },
+    { url: "image4.jpeg", caption: "Όταν σου έκλεψα το σάιντι τσικ C:" },
+    { url: "image6.png", caption: "Η 2η αγαπημένη μου" },
+    { url: "facetime.png", caption: "Γκούφι φέισταϊμ" }
   ];
 
   return (
@@ -83,10 +83,9 @@ export default function App() {
           scale: 1,
           x: 0
         } : {
-          // Μετακίνηση προς το κέντρο και τρελό μεγάλωμα
           x: `-${(taps / maxTaps) * 42}vw`,
           y: `-${(taps / maxTaps) * 44}vh`,
-          scale: 1 + taps * 0.8, // Αυξάνεται δραματικά σε κάθε tap
+          scale: 1 + taps * 0.8, 
         }}
         transition={taps === 0 ? {
           y: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
@@ -117,12 +116,12 @@ export default function App() {
             >
               <img 
                 src="image1.png" 
-                className="w-full h-96 object-cover rounded-[1.5rem]" 
+                className="w-full h-96 object-contain bg-zinc-900/10 rounded-[1.5rem]" 
                 alt="Surprise"
                 onError={(e) => { e.target.src = "https://placehold.co/400x500/111/444?text=Our+Special+Moment+❤️"; }}
               />
               <p className="text-amber-400 font-black italic text-lg px-2 mt-1">
-                Η μονη φωτογραφια που ειχαμε μαζι ΚΑΙ ΕΙΜΑΙ ΣΑΝ ΠΡΕΖΑΚΙ❤️
+                Η μόνη φωτογραφία που είχαμε μαζί ΚΑΙ ΕΙΜΑΙ ΣΑΝ ΠΡΕΖΑΚΙ❤️
               </p>
               <button 
                 onClick={() => setShowSurprise(false)}
@@ -191,7 +190,7 @@ export default function App() {
                               </span>
                               <img 
                                 src={item.image} 
-                                className="w-full h-52 object-cover rounded-2xl border border-amber-500/30"
+                                className="w-full h-52 object-contain bg-zinc-900/30 rounded-2xl border border-amber-500/30"
                                 alt={item.name}
                                 onError={(e) => { e.target.src = "https://placehold.co/500x300/1f1601/3a2902?text=💎+VIP"; }}
                               />
@@ -219,7 +218,7 @@ export default function App() {
                           <div key={idx} className="bg-zinc-900/30 p-4 rounded-3xl border border-zinc-900/80 text-white flex flex-col gap-4">
                             <img 
                               src={item.image} 
-                              className="w-full h-44 object-cover rounded-2xl border border-zinc-800/60"
+                              className="w-full h-44 object-contain bg-zinc-900/20 rounded-2xl border border-zinc-800/60"
                               alt={item.name}
                               onError={(e) => { e.target.src = "https://placehold.co/500x300/111/444?text=Delicious"; }}
                             />
@@ -267,7 +266,7 @@ export default function App() {
                 >
                   <img 
                     src={img.url} 
-                    className="w-full h-72 object-cover rounded-[1.5rem]" 
+                    className="w-full h-72 object-contain bg-zinc-900/10 rounded-[1.5rem]" 
                     alt={`Us ${i}`}
                     onError={(e) => { e.target.src = "https://placehold.co/400x500/111/444?text=Cute+Photo+Here"; }}
                   />
