@@ -4,7 +4,23 @@ import { motion, AnimatePresence } from 'framer-motion'
 export default function App() {
   const [page, setPage] = useState('home');
 
-  // ΟΛΕΣ ΟΙ ΚΑΤΗΓΟΡΙΕΣ ΜΑΖΙ ΜΕΣΑ ΣΤΟ ΙΔΙΟ OBJECT
+  // 1. STATE ΓΙΑ ΤΟ EASTER EGG ΤΗΣ ΚΑΡΔΙΑΣ
+  const [heartScale, setHeartScale] = useState(1);
+  const [showSurprise, setShowSurprise] = useState(false);
+
+  // Λειτουργία όταν πατάει την καρδούλα
+  const handleHeartClick = () => {
+    if (heartScale >= 5) {
+      // Αν έφτασε στο όριο (5 κλικ), σκάει και δείχνει τη φωτό
+      setShowSurprise(true);
+      setHeartScale(1); // Reset το μέγεθος για μετά
+    } else {
+      // Αλλιώς μεγαλώνει σιγά σιγά σε κάθε κλικ
+      setHeartScale(prev => prev + 1);
+    }
+  };
+
+  // ΟΡΓΑΝΩΣΗ ΜΕΝΟΥ
   const menuCategories = {
     savory: {
       title: "🍕 ΑΛΜΥΡΑ",
@@ -34,7 +50,7 @@ export default function App() {
           price: "999.99€", 
           image: "/premium.jpg", 
           review: "Σερβίρεται σε κρυστάλλινο ποτήρι με βρώσιμο χρυσό 24Κ και single malt ουίσκι 50 ετών. Μόνο για λίγους.",
-          isPremium: true // Flag για να ενεργοποιηθεί το σπασμένο layout
+          isPremium: true 
         }
       ]
     }
@@ -48,16 +64,62 @@ export default function App() {
   ];
 
   return (
-    <div style={{ backgroundColor: '#0a0a0a' }} className="min-h-screen w-full flex flex-col items-center">
+    <div style={{ backgroundColor: '#0a0a0a' }} className="min-h-screen w-full flex flex-col items-center overflow-x-hidden">
       
-      {/* CUTE FLOATING ΚΑΡΔΟΥΛΑ */}
+      {/* INTERACTIVE FLOATING ΚΑΡΔΟΥΛΑ (ΜΕΓΑΛΩΝΕΙ ΣΕ ΚΑΘΕ ΚΛΙΚ) */}
       <motion.div 
-        animate={{ y: [0, -8, 0], scale: [1, 1.05, 1] }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-        className="fixed bottom-6 right-6 text-4xl z-50 pointer-events-none drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]"
+        animate={{ 
+          y: [0, -8, 0], 
+          scale: heartScale 
+        }}
+        transition={{ 
+          y: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+          scale: { type: "spring", stiffness: 200, damping: 15 } 
+        }}
+        onClick={handleHeartClick}
+        className="fixed bottom-6 right-6 text-4xl z-40 cursor-pointer drop-shadow-[0_0_15px_rgba(239,68,68,0.7)] select-none active:scale-95"
       >
         ❤️
       </motion.div>
+
+      {/* ======================================= */}
+      {/*         ΟΘΟΝΗ ΕΚΠΛΗΞΗΣ (SURPRISE)       */}
+      {/* ======================================= */}
+      <AnimatePresence>
+        {showSurprise && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center p-6 text-center"
+          >
+            <motion.div 
+              initial={{ scale: 0.3, rotate: -10 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0.3, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="bg-zinc-950 p-4 rounded-[2.5rem] border border-amber-500/30 max-w-sm w-full shadow-[0_0_50px_rgba(245,158,11,0.25)] flex flex-col gap-4"
+            >
+              {/* Η μυστική σας φωτογραφία */}
+              <img 
+                src="/surprise.jpg" 
+                className="w-full h-96 object-cover rounded-[1.5rem]" 
+                alt="Surprise"
+                onError={(e) => { e.target.src = "https://placehold.co/400x500/111/444?text=Our+Special+Moment+❤️"; }}
+              />
+              <p className="text-amber-400 font-black italic text-lg px-2 mt-1">
+                Είσαι το καλύτερο κομμάτι της ζωής μου! 👑❤️
+              </p>
+              <button 
+                onClick={() => setShowSurprise(false)}
+                className="bg-zinc-900 text-zinc-400 hover:text-white py-2 rounded-xl text-xs font-bold transition-colors border border-zinc-800"
+              >
+                ❌ ΚΛΕΙΣΙΜΟ
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence mode="wait">
         
@@ -101,31 +163,24 @@ export default function App() {
                 const category = menuCategories[categoryKey];
                 return (
                   <div key={categoryKey} className="space-y-4">
-                    {/* Τίτλος Κατηγορίας */}
                     <h3 className={`font-black tracking-widest text-sm px-1 ${categoryKey === 'premium' ? 'text-amber-500 animate-pulse' : 'text-amber-500/80'}`}>
                       {category.title}
                     </h3>
                     
-                    {/* Λίστα με τα Items */}
                     <div className="space-y-6">
                       {category.items.map((item, idx) => {
-                        
-                        // ΑΝ ΤΟ ITEM ΕΙΝΑΙ PREMIUM, ΣΚΑΕΙ ΤΟ ΕΞΩΦΡΕΝΙΚΟ STYLE ΜΕ ΤΑ ΑΣΤΕΡΙΑ
                         if (item.isPremium) {
                           return (
                             <div key={idx} className="relative bg-gradient-to-b from-zinc-900 via-zinc-950 to-black p-5 rounded-3xl border-2 border-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.25)] text-white flex flex-col gap-4 overflow-visible my-6">
-                              
                               <span className="absolute -top-3 left-6 bg-amber-500 text-black font-black text-[9px] px-3 py-1 rounded-full tracking-widest uppercase shadow-md">
                                 NOT FOR EVERYONE
                               </span>
-
                               <img 
                                 src={item.image} 
                                 className="w-full h-52 object-cover rounded-2xl border border-amber-500/30"
                                 alt={item.name}
                                 onError={(e) => { e.target.src = "https://placehold.co/500x300/1f1601/3a2902?text=💎+999€"; }}
                               />
-                              
                               <div className="flex justify-between items-center px-1">
                                 <span className="text-xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200">
                                   {item.name}
@@ -134,8 +189,6 @@ export default function App() {
                                   {item.price}
                                 </span>
                               </div>
-
-                              {/* ΤΑ ΑΣΤΕΡΙΑ ΠΟΥ ΞΕΧΕΙΛΙΖΟΥΝ */}
                               <div className="relative bg-black/60 p-4 rounded-xl border border-amber-500/20 text-xs overflow-visible mt-2">
                                 <div className="absolute -top-5 -right-4 flex text-2xl drop-shadow-[0_0_10px_rgba(245,158,11,0.9)] pointer-events-none select-none tracking-tighter">
                                   ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
@@ -148,7 +201,6 @@ export default function App() {
                           );
                         }
 
-                        // ΚΑΝΟΝΙΚΟ ITEM STYLE
                         return (
                           <div key={idx} className="bg-zinc-900/30 p-4 rounded-3xl border border-zinc-900/80 text-white flex flex-col gap-4">
                             <img 
@@ -186,7 +238,7 @@ export default function App() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             className="w-full max-w-md p-6 flex flex-col items-center"
           >
-            <button onClick={() => setPage('home')} className="text-amber-500 mb-6 font-bold self-start text-sm">← ΠΙΣΩ</button>
+            <button onClick={() => setPage('home')} className="text-amber-500 mb-6 font-bold self-start text-sm">← ПΙΣΩ</button>
             <h2 style={{ color: '#f59e0b' }} className="text-2xl font-black mb-2 text-center italic uppercase tracking-widest">MEMORIES</h2>
             <p className="text-zinc-600 text-xs mb-8 italic">Our favorite moments together ❤️</p>
             
