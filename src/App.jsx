@@ -30,8 +30,8 @@ export default function App() {
       title: "🍰 ΓΛΥΚΑ",
       items: [
         { name: "Cookie", price: "5.50€", image: "/vafli.jpg", rating: 4, review: "Η σεφ με εβαλε να το φαω με το ζορι και με μεθυσε την ιδια μερα." },
-        { name: "Pancakes Chocolate and Strawberry", price: "8.80€", image: "/pancakes.jpg", rating: 5, review: "Το καλυτερο πρωινο ξυπνημα. πανκεικς και την πιο ομορφη σεφ." }
-        { name: "Bookie", price: "6.50€", image: "/vafli.jpg", rating: 3, review: "Ο μονος λογος που ηθελε να παω ειναι για να τα φτιαξει. Τα ζηλευω βαζω 3 αστερια!!!" },
+        { name: "Pancakes Chocolate and Strawberry", price: "8.80€", image: "/pancakes.jpg", rating: 5, review: "Το καλυτερο πρωινο ξυπνημα. πανκεικς και την πιο ομορφη σεφ." },
+        { name: "Bookie", price: "6.50€", image: "/vafli.jpg", rating: 3, review: "Ο μονος λογος που ηθελε να παω ειναι για να τα φτιαξει. Τα ζηλευω βαζω 3 αστερια!!!" }
       ]
     },
     drinks: {
@@ -49,7 +49,7 @@ export default function App() {
           image: "image5.png", 
           review: "Δεν εξαγοράζεται με χρήματα. Σερβίρεται μόνο σε ειδικές περιστάσεις για αυτούς που ξέρουν να εκτιμούν την πραγματική αξία.",
           isPremium: true 
-        }
+        },
         { 
           name: "Ο ΜΑΙΚ Ο ΦΑΣΟΛΑΚΗΣ", 
           price: "ΑΝΕΚΤΙΜΗΤΟ 💎", // Η νέα εξωφρενική τιμή
