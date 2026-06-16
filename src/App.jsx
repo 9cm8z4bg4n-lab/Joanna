@@ -63,7 +63,7 @@ export default function App() {
 
   // ΟΙ ΦΩΤΟΓΡΑΦΙΕΣ ΣΑΣ ΓΙΑ ΤΗ GALLERY (ΔΙΟΡΘΩΜΕΝΑ ΟΡΘΟΓΡΑΦΙΚΑ & ΤΟΝΟΙ)
   const galleryImages = [
-    { url: "image12.jpg", caption: "Η πρώτη μου φωτογραφία σου" },
+    { url: "image12.jpeg", caption: "Η πρώτη μου φωτογραφία σου" },
     { url: "image3.png", caption: "Με το σάιντ τσικ 1" },
     { url: "image8.png", caption: "Με το σάιντ τσικ 1 ΞΑΝΑ" },
     { url: "image2.png", caption: "Εσύ όταν γίνεσαι μπάvτι" },
