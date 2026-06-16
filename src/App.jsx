@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 export default function App() {
   const [page, setPage] = useState('home');
 
-  // ΟΡΓΑΝΩΣΗ ΜΕΝΟΥ ΣΕ ΚΑΤΗΓΟΡΙΕΣ
+  // ΟΛΕΣ ΟΙ ΚΑΤΗΓΟΡΙΕΣ ΜΑΖΙ ΜΕΣΑ ΣΤΟ ΙΔΙΟ OBJECT
   const menuCategories = {
     savory: {
       title: "🍕 ΑΛΜΥΡΑ",
@@ -25,10 +25,22 @@ export default function App() {
         { name: "Pornstar Martini", price: "10.00€", image: "/pornstar.jpg", rating: 5, review: "Το αγαπημένο μας! Δροσερό, με passion fruit και vanilla notes." },
         { name: "Negroni", price: "9.00€", image: "/negroni.jpg", rating: 4, review: "Κλασικό, γλυκόπικρο και balanced." }
       ]
+    },
+    premium: {
+      title: "💎 ULTRA VIP EXPERIENCE",
+      items: [
+        { 
+          name: "👑 THE KING'S NECTAR", 
+          price: "999.99€", 
+          image: "/premium.jpg", 
+          review: "Σερβίρεται σε κρυστάλλινο ποτήρι με βρώσιμο χρυσό 24Κ και single malt ουίσκι 50 ετών. Μόνο για λίγους.",
+          isPremium: true // Flag για να ενεργοποιηθεί το σπασμένο layout
+        }
+      ]
     }
   };
 
-  // ΟΙ ΦΩΤΟΓΡΑΦΙΕΣ ΣΑΣ (Βάλ' τες στο φάκελο public)
+  // ΟΙ ΦΩΤΟΓΡΑΦΙΕΣ ΣΑΣ ΓΙΑ ΤΗ GALLERY (Στο φάκελο public)
   const galleryImages = [
     { url: "/us1.jpg", caption: "Η αγαπημένη μου στιγμή μαζί σου 🥰" },
     { url: "/us2.jpg", caption: "Εμείς 🤍" },
@@ -48,6 +60,7 @@ export default function App() {
       </motion.div>
 
       <AnimatePresence mode="wait">
+        
         {/* --- HOME PAGE --- */}
         {page === 'home' && (
           <motion.div 
@@ -88,41 +101,85 @@ export default function App() {
                 const category = menuCategories[categoryKey];
                 return (
                   <div key={categoryKey} className="space-y-4">
-                    {/* Τίτλος Κατηγορίας (Αλμυρά, Γλυκά, Ποτά) */}
-                    <h3 className="text-amber-500/80 font-bold tracking-wider text-sm px-1">{category.title}</h3>
+                    {/* Τίτλος Κατηγορίας */}
+                    <h3 className={`font-black tracking-widest text-sm px-1 ${categoryKey === 'premium' ? 'text-amber-500 animate-pulse' : 'text-amber-500/80'}`}>
+                      {category.title}
+                    </h3>
                     
-                    {/* Αντικείμενα Κατηγορίας */}
+                    {/* Λίστα με τα Items */}
                     <div className="space-y-6">
-                      {category.items.map((item, idx) => (
-                        <div key={idx} className="bg-zinc-900/30 p-4 rounded-3xl border border-zinc-900/80 text-white flex flex-col gap-4">
-                          <img 
-                            src={item.image} 
-                            className="w-full h-44 object-cover rounded-2xl border border-zinc-800/60"
-                            alt={item.name}
-                            onError={(e) => { e.target.src = "https://placehold.co/500x300/111/444?text=Delicious"; }}
-                          />
-                          <div className="flex justify-between items-center px-1">
-                            <span className="text-lg font-bold">{item.name}</span>
-                            <span className="font-mono text-amber-500 font-bold">{item.price}</span>
-                          </div>
-                          <div className="bg-black/30 p-3 rounded-xl border border-zinc-900 text-xs">
-                            <div className="text-amber-400 mb-1">
-                              {"⭐".repeat(item.rating)}
+                      {category.items.map((item, idx) => {
+                        
+                        // ΑΝ ΤΟ ITEM ΕΙΝΑΙ PREMIUM, ΣΚΑΕΙ ΤΟ ΕΞΩΦΡΕΝΙΚΟ STYLE ΜΕ ΤΑ ΑΣΤΕΡΙΑ
+                        if (item.isPremium) {
+                          return (
+                            <div key={idx} className="relative bg-gradient-to-b from-zinc-900 via-zinc-950 to-black p-5 rounded-3xl border-2 border-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.25)] text-white flex flex-col gap-4 overflow-visible my-6">
+                              
+                              <span className="absolute -top-3 left-6 bg-amber-500 text-black font-black text-[9px] px-3 py-1 rounded-full tracking-widest uppercase shadow-md">
+                                NOT FOR EVERYONE
+                              </span>
+
+                              <img 
+                                src={item.image} 
+                                className="w-full h-52 object-cover rounded-2xl border border-amber-500/30"
+                                alt={item.name}
+                                onError={(e) => { e.target.src = "https://placehold.co/500x300/1f1601/3a2902?text=💎+999€"; }}
+                              />
+                              
+                              <div className="flex justify-between items-center px-1">
+                                <span className="text-xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200">
+                                  {item.name}
+                                </span>
+                                <span className="font-mono text-amber-400 font-black text-xl animate-bounce">
+                                  {item.price}
+                                </span>
+                              </div>
+
+                              {/* ΤΑ ΑΣΤΕΡΙΑ ΠΟΥ ΞΕΧΕΙΛΙΖΟΥΝ */}
+                              <div className="relative bg-black/60 p-4 rounded-xl border border-amber-500/20 text-xs overflow-visible mt-2">
+                                <div className="absolute -top-5 -right-4 flex text-2xl drop-shadow-[0_0_10px_rgba(245,158,11,0.9)] pointer-events-none select-none tracking-tighter">
+                                  ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+                                </div>
+                                <p className="text-amber-100/90 italic font-medium pr-10">
+                                  "{item.review}"
+                                </p>
+                              </div>
                             </div>
-                            <p className="text-zinc-400 italic">"{item.review}"</p>
+                          );
+                        }
+
+                        // ΚΑΝΟΝΙΚΟ ITEM STYLE
+                        return (
+                          <div key={idx} className="bg-zinc-900/30 p-4 rounded-3xl border border-zinc-900/80 text-white flex flex-col gap-4">
+                            <img 
+                              src={item.image} 
+                              className="w-full h-44 object-cover rounded-2xl border border-zinc-800/60"
+                              alt={item.name}
+                              onError={(e) => { e.target.src = "https://placehold.co/500x300/111/444?text=Delicious"; }}
+                            />
+                            <div className="flex justify-between items-center px-1">
+                              <span className="text-lg font-bold">{item.name}</span>
+                              <span className="font-mono text-amber-500 font-bold">{item.price}</span>
+                            </div>
+                            <div className="bg-black/30 p-3 rounded-xl border border-zinc-900 text-xs">
+                              <div className="text-amber-400 mb-1">
+                                {"⭐".repeat(item.rating)}
+                              </div>
+                              <p className="text-zinc-400 italic">"{item.review}"</p>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 );
               })}
             </div>
-            <div className="h-10"></div>
+            <div className="h-12"></div>
           </motion.div>
         )}
 
-        {/* --- CUTE GALLERY PAGE --- */}
+        {/* --- GALLERY PAGE --- */}
         {page === 'gallery' && (
           <motion.div 
             key="gallery"
