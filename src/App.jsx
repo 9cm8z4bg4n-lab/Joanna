@@ -23,30 +23,37 @@ export default function App() {
     savory: {
       title: "🍕 ΑΛΜΥΡΑ",
       items: [
-        { name: "Pizza Margherita", price: "8.50€", image: "/pizza.jpg", rating: 5, review: "Χειροποίητο ζυμάρι με σάλτσα ντομάτας, μοτσαρέλα και φρέσκο βασιλικό." }
+        { name: "Pizza Carbonara", price: "8.50€", image: "/pizza.jpg", rating: 4, review: "Η πεστο ηταν καλυτερη επειδη την εφτιαξα εγω." }
       ]
     },
     sweets: {
       title: "🍰 ΓΛΥΚΑ",
       items: [
-        { name: "Βάφλα Bueno", price: "7.50€", image: "/vafli.jpg", rating: 5, review: "Φρέσκια βάφλα με πλούσια πραλίνα Bueno και τριμμένο μπισκότο." },
-        { name: "Pancakes Chocolate", price: "6.80€", image: "/pancakes.jpg", rating: 5, review: "Αφράτα pancakes με διπλή στρώση σοκολάτας." }
+        { name: "Cookie", price: "5.50€", image: "/vafli.jpg", rating: 4, review: "Η σεφ με εβαλε να το φαω με το ζορι και με μεθυσε την ιδια μερα." },
+        { name: "Pancakes Chocolate and Strawberry", price: "8.80€", image: "/pancakes.jpg", rating: 5, review: "Το καλυτερο πρωινο ξυπνημα. πανκεικς και την πιο ομορφη σεφ." }
+        { name: "Bookie", price: "6.50€", image: "/vafli.jpg", rating: 3, review: "Ο μονος λογος που ηθελε να παω ειναι για να τα φτιαξει. Τα ζηλευω βαζω 3 αστερια!!!" },
       ]
     },
     drinks: {
       title: "🍸 ΠΟΤΑ & COCKTAILS",
       items: [
-        { name: "Pornstar Martini", price: "10.00€", image: "/pornstar.jpg", rating: 5, review: "Το αγαπημένο μας! Δροσερό, με passion fruit και vanilla notes." },
-        { name: "Negroni", price: "9.00€", image: "/negroni.jpg", rating: 4, review: "Κλασικό, γλυκόπικρο και balanced." }
+        { name: "Ρακί Καρπούζι", price: "6.00€", image: "/pornstar.jpg", rating: 3, review: "Για να μην το εχει πιει η αλκοολικια δεν λεει." }
       ]
     },
     premium: {
       title: "💎 ULTRA VIP EXPERIENCE",
       items: [
         { 
-          name: "👑 THE KING'S NECTAR", 
+          name: "Ο ΜΑΙΚ Ο ΦΑΣΟΛΑΚΗΣ", 
           price: "ΑΝΕΚΤΙΜΗΤΟ 💎", // Η νέα εξωφρενική τιμή
-          image: "/premium.jpg", 
+          image: "image5.png", 
+          review: "Δεν εξαγοράζεται με χρήματα. Σερβίρεται μόνο σε ειδικές περιστάσεις για αυτούς που ξέρουν να εκτιμούν την πραγματική αξία.",
+          isPremium: true 
+        }
+        { 
+          name: "Ο ΜΑΙΚ Ο ΦΑΣΟΛΑΚΗΣ", 
+          price: "ΑΝΕΚΤΙΜΗΤΟ 💎", // Η νέα εξωφρενική τιμή
+          image: "image10.jpeg", 
           review: "Δεν εξαγοράζεται με χρήματα. Σερβίρεται μόνο σε ειδικές περιστάσεις για αυτούς που ξέρουν να εκτιμούν την πραγματική αξία.",
           isPremium: true 
         }
@@ -56,9 +63,14 @@ export default function App() {
 
   // ΟΙ ΦΩΤΟΓΡΑΦΙΕΣ ΣΑΣ ΓΙΑ ΤΗ GALLERY
   const galleryImages = [
-    { url: "/us1.jpg", caption: "Η αγαπημένη μου στιγμή μαζί σου 🥰" },
-    { url: "/us2.jpg", caption: "Εμείς 🤍" },
-    { url: "/us3.jpg", caption: "Just us ✨" }
+    { url: "image12.jpg", caption: "Η πρώτη μου φωτογραφία σου" },
+    { url: "image3.png", caption: "με το σαιντ τσικ 1" },
+    { url: "image8.png", caption: "με το σαιντ τσικ 1 ΞΑΝΑ" },
+    { url: "image2.png", caption: "εσυ οταν γινεσαι μπαντι" },
+    { url: "image9.jpeg", caption: "Η ΑΓΑΠΗΜΕΝΗ ΜΟΥ...με το σαιντ τσικ 2" },
+    { url: "image4.jpeg", caption: "οταν σου εκλεψα το σαιντι τσικ C:" },
+    { url: "image6.png", caption: "Η 2η αγαπημενη μου" },
+    { url: "facetime.png", caption: "γκουφι φεισταιμ" }
   ];
 
   return (
@@ -104,13 +116,13 @@ export default function App() {
               className="bg-zinc-950 p-4 rounded-[2.5rem] border border-amber-500/30 max-w-sm w-full shadow-[0_0_50px_rgba(245,158,11,0.25)] flex flex-col gap-4"
             >
               <img 
-                src="/surprise.jpg" 
+                src="image1.png" 
                 className="w-full h-96 object-cover rounded-[1.5rem]" 
                 alt="Surprise"
                 onError={(e) => { e.target.src = "https://placehold.co/400x500/111/444?text=Our+Special+Moment+❤️"; }}
               />
               <p className="text-amber-400 font-black italic text-lg px-2 mt-1">
-                Είσαι το καλύτερο κομμάτι της ζωής μου! 👑❤️
+                Η μονη φωτογραφια που ειχαμε μαζι❤️
               </p>
               <button 
                 onClick={() => setShowSurprise(false)}
@@ -133,10 +145,10 @@ export default function App() {
             className="flex flex-col items-center justify-center min-h-screen w-full px-6 text-center"
           >
             <h1 style={{ color: '#f59e0b' }} className="text-4xl font-black mb-1 italic uppercase tracking-tight">
-              Our Place
+              JOANNA'S HOME
             </h1>
             <p className="text-zinc-500 mb-12 text-xs tracking-widest uppercase font-light">
-              Made with love & sugar ❤️
+              Made with hate while rage-baited 😡
             </p>
             
             <div className="flex flex-col w-full max-w-[280px] gap-4">
@@ -242,7 +254,7 @@ export default function App() {
           >
             <button onClick={() => setPage('home')} className="text-amber-500 mb-6 font-bold self-start text-sm">← ΠΙΣΩ</button>
             <h2 style={{ color: '#f59e0b' }} className="text-2xl font-black mb-2 text-center italic uppercase tracking-widest">MEMORIES</h2>
-            <p className="text-zinc-600 text-xs mb-8 italic">Our favorite moments together ❤️</p>
+            <p className="text-zinc-600 text-xs mb-8 italic">LEAKS 🫣</p>
             
             <div className="grid grid-cols-1 gap-6 w-full">
               {galleryImages.map((img, i) => (
