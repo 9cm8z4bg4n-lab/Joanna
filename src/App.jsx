@@ -6,7 +6,7 @@ export default function App() {
 
   // STATE ΓΙΑ ΤΟ ΕΠΙΚΟ EASTER EGG ΤΗΣ ΚΑΡΔΙΑΣ
   const [taps, setTaps] = useState(0);
-  const maxTaps = 10; // Χρειάζονται 10 taps για να σκάσει
+  const maxTaps = 9; // Χρειάζονται 10 taps για να σκάσει
   const [showSurprise, setShowSurprise] = useState(false);
 
   const handleHeartClick = () => {
@@ -122,7 +122,7 @@ export default function App() {
                 onError={(e) => { e.target.src = "https://placehold.co/400x500/111/444?text=Our+Special+Moment+❤️"; }}
               />
               <p className="text-amber-400 font-black italic text-lg px-2 mt-1">
-                Η μονη φωτογραφια που ειχαμε μαζι❤️
+                Η μονη φωτογραφια που ειχαμε μαζι ΚΑΙ ΕΙΜΑΙ ΣΑΝ ΠΡΕΖΑΚΙ❤️
               </p>
               <button 
                 onClick={() => setShowSurprise(false)}
