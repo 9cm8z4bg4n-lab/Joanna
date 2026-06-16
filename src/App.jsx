@@ -4,19 +4,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 export default function App() {
   const [page, setPage] = useState('home');
 
-  // 1. STATE ΓΙΑ ΤΟ EASTER EGG ΤΗΣ ΚΑΡΔΙΑΣ
-  const [heartScale, setHeartScale] = useState(1);
+  // STATE ΓΙΑ ΤΟ ΕΠΙΚΟ EASTER EGG ΤΗΣ ΚΑΡΔΙΑΣ
+  const [taps, setTaps] = useState(0);
+  const maxTaps = 10; // Χρειάζονται 10 taps για να σκάσει
   const [showSurprise, setShowSurprise] = useState(false);
 
-  // Λειτουργία όταν πατάει την καρδούλα
   const handleHeartClick = () => {
-    if (heartScale >= 5) {
-      // Αν έφτασε στο όριο (5 κλικ), σκάει και δείχνει τη φωτό
+    if (taps >= maxTaps) {
       setShowSurprise(true);
-      setHeartScale(1); // Reset το μέγεθος για μετά
+      setTaps(0); // Reset μετά την έκπληξη
     } else {
-      // Αλλιώς μεγαλώνει σιγά σιγά σε κάθε κλικ
-      setHeartScale(prev => prev + 1);
+      setTaps(prev => prev + 1);
     }
   };
 
@@ -47,16 +45,16 @@ export default function App() {
       items: [
         { 
           name: "👑 THE KING'S NECTAR", 
-          price: "999.99€", 
+          price: "ΑΝΕΚΤΙΜΗΤΟ 💎", // Η νέα εξωφρενική τιμή
           image: "/premium.jpg", 
-          review: "Σερβίρεται σε κρυστάλλινο ποτήρι με βρώσιμο χρυσό 24Κ και single malt ουίσκι 50 ετών. Μόνο για λίγους.",
+          review: "Δεν εξαγοράζεται με χρήματα. Σερβίρεται μόνο σε ειδικές περιστάσεις για αυτούς που ξέρουν να εκτιμούν την πραγματική αξία.",
           isPremium: true 
         }
       ]
     }
   };
 
-  // ΟΙ ΦΩΤΟΓΡΑΦΙΕΣ ΣΑΣ ΓΙΑ ΤΗ GALLERY (Στο φάκελο public)
+  // ΟΙ ΦΩΤΟΓΡΑΦΙΕΣ ΣΑΣ ΓΙΑ ΤΗ GALLERY
   const galleryImages = [
     { url: "/us1.jpg", caption: "Η αγαπημένη μου στιγμή μαζί σου 🥰" },
     { url: "/us2.jpg", caption: "Εμείς 🤍" },
@@ -66,25 +64,30 @@ export default function App() {
   return (
     <div style={{ backgroundColor: '#0a0a0a' }} className="min-h-screen w-full flex flex-col items-center overflow-x-hidden">
       
-      {/* INTERACTIVE FLOATING ΚΑΡΔΟΥΛΑ (ΜΕΓΑΛΩΝΕΙ ΣΕ ΚΑΘΕ ΚΛΙΚ) */}
+      {/* ANIMATED ΚΑΡΔΟΥΛΑ ΠΟΥ ΠΗΓΑΙΝΕΙ ΚΕΝΤΡΟ ΚΑΙ ΜΕΓΑΛΩΝΕΙ */}
       <motion.div 
-        animate={{ 
-          y: [0, -8, 0], 
-          scale: heartScale 
+        animate={taps === 0 ? {
+          y: [0, -8, 0],
+          scale: 1,
+          x: 0
+        } : {
+          // Μετακίνηση προς το κέντρο και τρελό μεγάλωμα
+          x: `-${(taps / maxTaps) * 42}vw`,
+          y: `-${(taps / maxTaps) * 44}vh`,
+          scale: 1 + taps * 0.8, // Αυξάνεται δραματικά σε κάθε tap
         }}
-        transition={{ 
-          y: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
-          scale: { type: "spring", stiffness: 200, damping: 15 } 
+        transition={taps === 0 ? {
+          y: { duration: 2.5, repeat: Infinity, ease: "easeInOut" }
+        } : {
+          type: "spring", stiffness: 120, damping: 14
         }}
         onClick={handleHeartClick}
-        className="fixed bottom-6 right-6 text-4xl z-40 cursor-pointer drop-shadow-[0_0_15px_rgba(239,68,68,0.7)] select-none active:scale-95"
+        className="fixed bottom-6 right-6 text-4xl z-40 cursor-pointer drop-shadow-[0_0_15px_rgba(239,68,68,0.8)] select-none active:scale-95 origin-center"
       >
         ❤️
       </motion.div>
 
-      {/* ======================================= */}
-      {/*         ΟΘΟΝΗ ΕΚΠΛΗΞΗΣ (SURPRISE)       */}
-      {/* ======================================= */}
+      {/* ΟΘΟΝΗ ΕΚΠΛΗΞΗΣ (SURPRISE POPUP) */}
       <AnimatePresence>
         {showSurprise && (
           <motion.div 
@@ -100,7 +103,6 @@ export default function App() {
               transition={{ type: "spring", duration: 0.5 }}
               className="bg-zinc-950 p-4 rounded-[2.5rem] border border-amber-500/30 max-w-sm w-full shadow-[0_0_50px_rgba(245,158,11,0.25)] flex flex-col gap-4"
             >
-              {/* Η μυστική σας φωτογραφία */}
               <img 
                 src="/surprise.jpg" 
                 className="w-full h-96 object-cover rounded-[1.5rem]" 
@@ -179,13 +181,13 @@ export default function App() {
                                 src={item.image} 
                                 className="w-full h-52 object-cover rounded-2xl border border-amber-500/30"
                                 alt={item.name}
-                                onError={(e) => { e.target.src = "https://placehold.co/500x300/1f1601/3a2902?text=💎+999€"; }}
+                                onError={(e) => { e.target.src = "https://placehold.co/500x300/1f1601/3a2902?text=💎+VIP"; }}
                               />
-                              <div className="flex justify-between items-center px-1">
+                              <div className="flex justify-between items-center px-1 gap-2">
                                 <span className="text-xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-200">
                                   {item.name}
                                 </span>
-                                <span className="font-mono text-amber-400 font-black text-xl animate-bounce">
+                                <span className="font-sans text-amber-400 font-black text-base whitespace-nowrap animate-pulse">
                                   {item.price}
                                 </span>
                               </div>
@@ -238,7 +240,7 @@ export default function App() {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             className="w-full max-w-md p-6 flex flex-col items-center"
           >
-            <button onClick={() => setPage('home')} className="text-amber-500 mb-6 font-bold self-start text-sm">← ПΙΣΩ</button>
+            <button onClick={() => setPage('home')} className="text-amber-500 mb-6 font-bold self-start text-sm">← ΠΙΣΩ</button>
             <h2 style={{ color: '#f59e0b' }} className="text-2xl font-black mb-2 text-center italic uppercase tracking-widest">MEMORIES</h2>
             <p className="text-zinc-600 text-xs mb-8 italic">Our favorite moments together ❤️</p>
             
